@@ -19,7 +19,7 @@ def process_sensor_data(A2D_value, temperature_value):
 
 def start_sending():
     for reading in range (streaming_data_limit):
-        data = process_sensor_data(A2D_readings[reading], temperature_readings[reading])
+        data = process_sensor_data(float(A2D_readings[reading]), float(temperature_readings[reading]))
         data_sent = send_data_to_receiver(data)
         time.sleep(0.5)
 
