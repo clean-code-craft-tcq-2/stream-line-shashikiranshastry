@@ -14,8 +14,6 @@ jobs:
           python-version: 3.9.12
 
     - name: Run with setup-python 3.9
-      with:
-        python-version: 3.8
       run: |
         python -V
         python input_sensor_data.py
