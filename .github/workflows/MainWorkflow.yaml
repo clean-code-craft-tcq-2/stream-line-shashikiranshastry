@@ -20,4 +20,4 @@ jobs:
       with:
         python-version: 3.8
     - name: Verify 3.8
-      run: python sender.py
+      run: python input_sensor_data.py
