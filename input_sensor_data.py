@@ -15,3 +15,4 @@ with open('Input_example.csv', newline='') as csvfile:
             print(f'element1:{row[0]}, element2:{row[1]}')
         if row == "START":
             start_read = True
+        print(f'element1:{row[0]}')
