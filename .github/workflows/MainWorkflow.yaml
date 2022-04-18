@@ -15,9 +15,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y gcovr
 
-    name: Run with setup-python 3.8
-      uses: ./
+    - name: Run with setup-python 3.8
       with:
         python-version: 3.8
-    - name: Verify 3.8
       run: python input_sensor_data.py
