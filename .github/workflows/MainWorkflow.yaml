@@ -16,4 +16,4 @@ jobs:
     - name: Run with setup-python 3.9
       run: |
         python -V
-        python input_sensor_data.py
+        python sender.py
