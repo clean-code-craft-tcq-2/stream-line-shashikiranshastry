@@ -1,6 +1,6 @@
 import sys
 import time
-import data_conversion
+import dataconversion
 import input_sensor_data
 streaming_data_limit = 2
 
@@ -16,7 +16,7 @@ def process_sensor_data(A2D_value, temperature_value):
     temperature = data_conversion.map_celsius_to_fahrenheit(temperature_value)
     data = current + "," + temperature + "\n"
     return data
-    
+
 def start_sending():
     for reading in range (streaming_data_limit):
         data = process_sensor_data(A2D_readings[reading], temperature_readings[reading])
@@ -24,14 +24,3 @@ def start_sending():
         time.sleep(0.5)
 
 start_sending()
-
-    
-    
-
-
-
-    
-
-    
-    
-
