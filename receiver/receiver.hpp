@@ -15,6 +15,7 @@ class CSV_data{
 private:
   std::vector<std::vector<float>> all_data;
   bool is_number(std::string element);
+  Statistics calculate(std::vector<float>* array, int last_floats);
 public:
   void new_data(std::string line_of_data);
   std::vector<Statistics> processs(size_t last_N_floats);

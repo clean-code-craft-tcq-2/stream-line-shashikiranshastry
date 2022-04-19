@@ -46,25 +46,29 @@ std::vector<Statistics> CSV_data::processs(size_t last_N_floats){
   }
   //Only process data if the vector is bigger than 5
   for(auto&& Column : all_data){
-    float min, max, avg;
     if(Column.size() > last_N_floats){
 
-      min=Column.front();
-      max=Column.front();
-      avg = 0.0;
-      for(auto&& single_float : Column){
-        if(min > single_float) min = single_float;
-        if(max < single_float) max = single_float;
-      }
-      for(std::vector<float>::iterator ptr = Column.end() - 1; ptr > Column.end() - 1 - last_N_floats; ptr--){
-        // std::cout << "*" << *ptr << '\n';
-        avg += *ptr;
-      }
-      avg /= last_N_floats;
-      data_stats.push_back({max,min,avg,std::string()});
+      data_stats.push_back(this->calculate(&Column, last_N_floats));
     }
   }
   return data_stats;
+}
+
+Statistics CSV_data::calculate(std::vector<float>* array, int last_floats){
+  float min, max, avg;
+  min=array->front();
+  max=array->front();
+  avg = 0.0;
+  for(auto&& single_float : *array){
+    if(min > single_float) min = single_float;
+    if(max < single_float) max = single_float;
+  }
+  for(std::vector<float>::iterator ptr = array->end() - 1; ptr > array->end() - 1 - last_floats; ptr--){
+    // std::cout << "*" << *ptr << '\n';
+    avg += *ptr;
+  }
+  avg /= last_floats;
+  return {max,min,avg,std::string()};
 }
 
 void Receiver::process(void){
