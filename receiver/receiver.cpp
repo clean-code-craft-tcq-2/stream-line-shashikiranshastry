@@ -61,7 +61,7 @@ std::vector<Statistics> CSV_data::processs(size_t last_N_floats){
         avg += *ptr;
       }
       avg /= last_N_floats;
-      data_stats.push_back({max,min,avg});
+      data_stats.push_back({max,min,avg,std::string()});
     }
   }
   return data_stats;
@@ -71,16 +71,20 @@ void Receiver::process(void){
   _stats.clear();
   //input with stored data less than 5 will not be processed
   _stats = data_received.processs(5);
+  //I'm gonna hard code this here because the CSV stream does not include units
+  _stats.at(0).units = "Amps";
+  _stats.at(1).units = std::string("\370") + std::string("F");
 }
 
 void Receiver::print_stats(void){
   size_t column = 1;
+  std::cout << "\n\tStatistics:";
   for(auto&& STAT : _stats){
     std::cout << "\n\t|======================================================\n";
     std::cout << "\t|Column #" << column++ << '\n';
-    std::cout << "\t|\tMin: " << STAT.minimum <<'\n';
-    std::cout << "\t|\tMax: " << STAT.maximum <<'\n';
-    std::cout << "\t|\tSimple Moving Average(last 5 samples): " << STAT.average <<'\n';
+    std::cout << "\t|\tMin: " << STAT.minimum << '[' << STAT.units << ']' <<'\n';
+    std::cout << "\t|\tMax: " << STAT.maximum << '[' << STAT.units << ']' <<'\n';
+    std::cout << "\t|\tSimple Moving Average(last 5 samples): " << STAT.average << '[' << STAT.units << ']' <<'\n';
     std::cout << "\t|======================================================\n";
   }
   if(_stats.empty()){
