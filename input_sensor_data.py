@@ -22,5 +22,5 @@ if Use_file == True:
             #print(f'element1:{row[0]}')
 else:
     for i in range(50):
-        A2D_readings.append(round(math.sine(2*math.pi/i))*3906 + 94 + random.randint(0,94))
-        temperature_sensor_readings.append(math.sine(2*math.pi/i)*40 + random.random()*4)
+        A2D_readings.append(round(math.sin(2*math.pi/i))*3906 + 94 + random.randint(0,94))
+        temperature_sensor_readings.append(math.sin(2*math.pi/i)*40 + random.random()*4)
