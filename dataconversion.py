@@ -5,7 +5,7 @@ def map_adc_value_to_amps(A2Dvalue, ADC_dict):
     value = A2Dvalue
     value -= ADC_dict["intercept"]
     if value<=ADC_dict["max_permissible_value"] :
-        result = str(((((value)/ADC_dict["max_permissible_value"])*ADC_dict["max_current_range"])))
+        result = str(round((((value)/ADC_dict["max_permissible_value"])*ADC_dict["max_current_range"]), 4))
     return (result)
 
 def map_celsius_to_fahrenheit(temperature):
