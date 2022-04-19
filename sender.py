@@ -2,7 +2,7 @@ import sys
 import time
 import dataconversion
 import input_sensor_data
-streaming_data_limit = 2
+streaming_data_limit = 50
 
 A2D_readings = input_sensor_data.A2D_readings
 temperature_readings = input_sensor_data.temperature_sensor_readings
