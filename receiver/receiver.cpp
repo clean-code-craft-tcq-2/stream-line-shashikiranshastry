@@ -77,17 +77,18 @@ void Receiver::process(void){
 }
 
 void Receiver::print_stats(void){
-  size_t column = 1;
-  std::cout << "\n\tStatistics:";
-  for(auto&& STAT : _stats){
-    std::cout << "\n\t|======================================================\n";
-    std::cout << "\t|Column #" << column++ << '\n';
-    std::cout << "\t|\tMin: " << STAT.minimum << '[' << STAT.units << ']' <<'\n';
-    std::cout << "\t|\tMax: " << STAT.maximum << '[' << STAT.units << ']' <<'\n';
-    std::cout << "\t|\tSimple Moving Average(last 5 samples): " << STAT.average << '[' << STAT.units << ']' <<'\n';
-    std::cout << "\t|======================================================\n";
-  }
-  if(_stats.empty()){
+  if(!_stats.empty()){
+    size_t column = 1;
+    std::cout << "\n\tStatistics:";
+    for(auto&& STAT : _stats){
+      std::cout << "\n\t|======================================================\n";
+      std::cout << "\t|Column #" << column++ << '\n';
+      std::cout << "\t|\tMin: " << STAT.minimum << '[' << STAT.units << ']' <<'\n';
+      std::cout << "\t|\tMax: " << STAT.maximum << '[' << STAT.units << ']' <<'\n';
+      std::cout << "\t|\tSimple Moving Average(last 5 samples): " << STAT.average << '[' << STAT.units << ']' <<'\n';
+      std::cout << "\t|======================================================\n";
+    }
+  }else{
     std::cerr << "No stats to be printed, sorry\n";
   }
 }
