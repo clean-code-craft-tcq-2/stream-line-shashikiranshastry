@@ -17,3 +17,9 @@ jobs:
       run: |
         python -V
         python sender.py
+
+    - name: build_receiver
+      run: g++ -Wall -Wextra -o receiver receiver\receiver.cpp
+
+    - name: run
+      run: python sender.py | ./receiver
