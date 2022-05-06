@@ -1,0 +1,25 @@
+name: Build and Run
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+          python-version: 3.9.12
+
+    - name: Run with setup-python 3.9
+      run: |
+        python -V
+        python sender.py
+
+    - name: build_receiver
+      run: g++ -Wall -Wextra -o receiver.exe receiver/receiver.cpp receiver/receiver_main.cpp -fpermissive
+
+    - name: run
+      run: python sender.py | ./receiver.exe
